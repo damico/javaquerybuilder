@@ -1,0 +1,56 @@
+=Java Query Builder=
+
+ * _This is a small and very simple JEE application. That intents to be a based "report wizard". It collects data from one main table/view (and its relationships) and present the results based on simple logic arguments as *AND, OR, <, >, CONTAINS, ==* 
+ * This application is written in Java POJOs with EJB3 (Session Beans) and plain Servlets. 
+ * The target platform for this application is Glassfish v2 with Postgres 8.1 _
+
+*First we have a XML configuration file:*
+
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<javaquerybuilder>
+<header doctype="config" source = "jndi/testDB" mainview = "report" />
+<payload>
+<fields>
+<fieldref column = "report.name" relationship = "null" representation = "report.name"     type="string" />
+<fieldref column = "report.course" relationship = "rel_report.courseid"   representation = "rel_report.coursetitle" type = "string" />
+</fields>
+</payload>
+</javaquerybuilder>
+}}}
+
+*This XML aims to describe 5 main things:*
+
+ # Data-Source
+ # Main Table
+ # Fields name
+ # Fields relationship
+ # Fields type
+
+This XML will be parsed (using SAX) into one single data object.
+
+*Then we have the servlets*
+
+This data object will be accessed by a servlet (MountQuery). This servlet will contain a form with a "multi-line combo box" with the list of fields. The other columns will be presented as the following table:
+
+The user will be able to select multiple fields and press the Submit button. After pressed the contents of form will be sent by POST to another servlet (ProcessMountQuery).
+
+The ProcessMountQuery servlet will create a table where the first cell of each line will be the name of field selected into previous servlet.
+
+|| *Field Name* || *Comparison Combo* || *Comparison Value* || *Logic Operator Combo* ||
+|| Auto filled|| Contains         || Editable value   || AND            ||
+||            || ==               ||                  || OR             ||
+||            || >                ||                  ||                ||
+||            || <                ||                  ||                ||
+||            || >=               ||                  ||                ||
+||            || =<               ||                  ||                ||
+
+For each field selected into previous servlet, one line will be created with the content presented into table above. Will be only one difference into last field that will be the last line of table: For this field there will be no *Logic Operator Combo*
+
+Still into ProcessMountQuery we will have a combo box with all fields of main table (described on XML). This combo box will be called "Order By".
+
+After "Order By" will be a radio button called "Include all Fields? (Yes|No)".
+
+Finally will be the Submit button.
+
+Based upon these data from first and second servlet the application will build a SQL SELECT statement compatible with Postres 8.1. This statement will be prompted at a third servlet called SQLResult.
