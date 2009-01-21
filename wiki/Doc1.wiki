@@ -55,4 +55,4 @@ Finally will be the Submit button.
 
 Based upon these data from first and second servlet the application will build a SQL SELECT statement compatible with Postres 8.1. This statement will be prompted at a third servlet called SQLResult.
 
-Once we have a SQL Statement, there will be a table right after the SQL Statement with the results of that SELECT against the data source. At this time we will see the *Role of EJBs*
+Once we have a SQL Statement, there will be a table right after the SQL Statement with the results of that SELECT against the data source. At this time we will see the *Role of EJB*. It will be used to make the isolation between servlets and business rules: So, every database connection/handling will be invoked by EJB; As well as all XML parsing.
