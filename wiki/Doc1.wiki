@@ -60,3 +60,7 @@ Once we have a SQL Statement, there will be a table right after the SQL Statemen
 The database connections and operations will be handled by a *concrete factory* that will provide "products" based upon the type of RDBMS used. But for the first release that factory will only provide a product to handle Postgres operations.
 
 The main basic operations such as getConnection, setup Context, close connection, close resultset, close statement, etc must come from a super class, used by every product from factory.
+
+*Exceptions:*
+
+There will be one super "common" exception for application, called JQBException. Before EJB, all methods for all classes must throw its specifics exceptions. No exceptions should be caught inside methods, except for SQLException. In this case, after caught it must throw new JQBException. 
