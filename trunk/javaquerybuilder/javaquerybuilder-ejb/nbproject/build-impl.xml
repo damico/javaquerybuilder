@@ -282,9 +282,69 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-    <target depends="compile" name="library-inclusion-in-archive"/>
+    <target depends="compile" name="library-inclusion-in-archive">
+        <copy file="${file.reference.cglib-nodep-2.2.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-codec-1.3.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-collections-3.2.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-fileupload-1.2.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-io-1.4.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-logging-1.1.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.commons-logging-adapters-1.1.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.dom4j-1.6.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.jdom-1.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.jettison-1.0.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.joda-time-1.6.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.stax-1.2.0.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.stax-api-1.0.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.wstx-asl-3.2.7.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.xml-writer-0.2.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.xom-1.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.xpp3_min-1.1.4c.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.xstream-1.3.1.jar}" todir="${build.classes.dir}"/>
+        <copy file="${file.reference.xstream-benchmark-1.3.1.jar}" todir="${build.classes.dir}"/>
+    </target>
     <target depends="compile" name="library-inclusion-in-manifest">
-        <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
+        <basename file="${file.reference.cglib-nodep-2.2.jar}" property="included.lib.file.reference.cglib-nodep-2.2.jar"/>
+        <copy file="${file.reference.cglib-nodep-2.2.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-codec-1.3.jar}" property="included.lib.file.reference.commons-codec-1.3.jar"/>
+        <copy file="${file.reference.commons-codec-1.3.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-collections-3.2.1.jar}" property="included.lib.file.reference.commons-collections-3.2.1.jar"/>
+        <copy file="${file.reference.commons-collections-3.2.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-fileupload-1.2.1.jar}" property="included.lib.file.reference.commons-fileupload-1.2.1.jar"/>
+        <copy file="${file.reference.commons-fileupload-1.2.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-io-1.4.jar}" property="included.lib.file.reference.commons-io-1.4.jar"/>
+        <copy file="${file.reference.commons-io-1.4.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-logging-1.1.1.jar}" property="included.lib.file.reference.commons-logging-1.1.1.jar"/>
+        <copy file="${file.reference.commons-logging-1.1.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.commons-logging-adapters-1.1.1.jar}" property="included.lib.file.reference.commons-logging-adapters-1.1.1.jar"/>
+        <copy file="${file.reference.commons-logging-adapters-1.1.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.dom4j-1.6.1.jar}" property="included.lib.file.reference.dom4j-1.6.1.jar"/>
+        <copy file="${file.reference.dom4j-1.6.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.jdom-1.1.jar}" property="included.lib.file.reference.jdom-1.1.jar"/>
+        <copy file="${file.reference.jdom-1.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.jettison-1.0.1.jar}" property="included.lib.file.reference.jettison-1.0.1.jar"/>
+        <copy file="${file.reference.jettison-1.0.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.joda-time-1.6.jar}" property="included.lib.file.reference.joda-time-1.6.jar"/>
+        <copy file="${file.reference.joda-time-1.6.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.stax-1.2.0.jar}" property="included.lib.file.reference.stax-1.2.0.jar"/>
+        <copy file="${file.reference.stax-1.2.0.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.stax-api-1.0.1.jar}" property="included.lib.file.reference.stax-api-1.0.1.jar"/>
+        <copy file="${file.reference.stax-api-1.0.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.wstx-asl-3.2.7.jar}" property="included.lib.file.reference.wstx-asl-3.2.7.jar"/>
+        <copy file="${file.reference.wstx-asl-3.2.7.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.xml-writer-0.2.jar}" property="included.lib.file.reference.xml-writer-0.2.jar"/>
+        <copy file="${file.reference.xml-writer-0.2.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.xom-1.1.jar}" property="included.lib.file.reference.xom-1.1.jar"/>
+        <copy file="${file.reference.xom-1.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.xpp3_min-1.1.4c.jar}" property="included.lib.file.reference.xpp3_min-1.1.4c.jar"/>
+        <copy file="${file.reference.xpp3_min-1.1.4c.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.xstream-1.3.1.jar}" property="included.lib.file.reference.xstream-1.3.1.jar"/>
+        <copy file="${file.reference.xstream-1.3.1.jar}" todir="${dist.ear.dir}"/>
+        <basename file="${file.reference.xstream-benchmark-1.3.1.jar}" property="included.lib.file.reference.xstream-benchmark-1.3.1.jar"/>
+        <copy file="${file.reference.xstream-benchmark-1.3.1.jar}" todir="${dist.ear.dir}"/>
+        <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
+            <attribute name="Class-Path" value="${included.lib.file.reference.cglib-nodep-2.2.jar} ${included.lib.file.reference.commons-codec-1.3.jar} ${included.lib.file.reference.commons-collections-3.2.1.jar} ${included.lib.file.reference.commons-fileupload-1.2.1.jar} ${included.lib.file.reference.commons-io-1.4.jar} ${included.lib.file.reference.commons-logging-1.1.1.jar} ${included.lib.file.reference.commons-logging-adapters-1.1.1.jar} ${included.lib.file.reference.dom4j-1.6.1.jar} ${included.lib.file.reference.jdom-1.1.jar} ${included.lib.file.reference.jettison-1.0.1.jar} ${included.lib.file.reference.joda-time-1.6.jar} ${included.lib.file.reference.stax-1.2.0.jar} ${included.lib.file.reference.stax-api-1.0.1.jar} ${included.lib.file.reference.wstx-asl-3.2.7.jar} ${included.lib.file.reference.xml-writer-0.2.jar} ${included.lib.file.reference.xom-1.1.jar} ${included.lib.file.reference.xpp3_min-1.1.4c.jar} ${included.lib.file.reference.xstream-1.3.1.jar} ${included.lib.file.reference.xstream-benchmark-1.3.1.jar} "/>
+        </manifest>
     </target>
     <target name="-copy-meta-inf">
         <copy todir="${classes.dir}">
