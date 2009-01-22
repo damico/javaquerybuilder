@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<javaquerybuilder>
+    <header doctype="config" source="jndi/testDB" mainview="report" />
+    <payload>
+        <fields>
+            <fieldref column="report.name" relationship="null" representation="report.name" type="string" />
+            <fieldref column="report.course" relationship="rel_report.courseid" representation="rel_report.coursetitle" type="string" />
+        </fields>
+    </payload>
+</javaquerybuilder>
