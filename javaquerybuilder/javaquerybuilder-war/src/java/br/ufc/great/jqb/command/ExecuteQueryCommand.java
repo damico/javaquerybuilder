@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 public class ExecuteQueryCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getParameter("parameters") != null)
-            request.setAttribute("parameters", request.getParameter("parameters"));
+        String parametersQuery = request.getParameter("parametersQuery");
+        if (parametersQuery != null && parametersQuery.trim().length() > 0) {
+            request.setAttribute("parametersQuery", parametersQuery);
+        }
         QueryRemote queryRemote = new QueryBean();
         ResultSet resultSet = queryRemote.execute("select * from person");
         if (resultSet != null)

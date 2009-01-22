@@ -36,25 +36,25 @@
         if (logicValue == null || logicValue == '')
             return;
 
-        var regs = document.getElementById('parameters').value;
+        var regs = document.getElementById('parametersQuery').value;
         if (regs != '' && regs != null) {
             var temp = regs.split(';');
             if (temp != null) {
                 regs = temp;
-                document.getElementById('parameters').value = '';
+                document.getElementById('parametersQuery').value = '';
                 for (var i = 0; i < regs.length; i++) {
                     var dreg = regs[i].split('@');
-                    if (document.getElementById('parameters').value.length > 0)
-                        document.getElementById('parameters').value += ';';                        
-                    document.getElementById('parameters').value += dreg[0] + '@' + dreg[1] + '@' + dreg[2] + '@' + dreg[3];
+                    if (document.getElementById('parametersQuery').value.length > 0)
+                        document.getElementById('parametersQuery').value += ';';                        
+                    document.getElementById('parametersQuery').value += dreg[0] + '@' + dreg[1] + '@' + dreg[2] + '@' + dreg[3];
                 }
             }
         }
         
-        if (document.getElementById('parameters').value.length > 0)
-            document.getElementById('parameters').value += ';';
+        if (document.getElementById('parametersQuery').value.length > 0)
+            document.getElementById('parametersQuery').value += ';';
         
-        document.getElementById('parameters').value += fieldRef + '@' + compType + '@' + compValue + '@' + logicValue;
+        document.getElementById('parametersQuery').value += fieldRef + '@' + compType + '@' + compValue + '@' + logicValue;
         document.getElementById('fieldRef').value = '';
         document.getElementById('compType').value = '';
         document.getElementById('compValue').value = '';
@@ -64,7 +64,7 @@
     }
     
     function removeItem(index) {
-        var list = document.getElementById('parameters').value.split(';');
+        var list = document.getElementById('parametersQuery').value.split(';');
         if (list != null && index < list.length) {
             var i = 0;
             var temp = '';
@@ -77,7 +77,7 @@
                 temp = temp.substring(0, temp.length - 1);
             }
         }
-        document.getElementById('parameters').value = temp;
+        document.getElementById('parametersQuery').value = temp;
         updateItems();
     }
     
@@ -91,8 +91,8 @@
         html += '<td>Logical</td>';
         html += '<td>&nbsp;</td>';
         html += '</tr>';
-        if (document.getElementById('parameters').value.length > 0) {
-            var list = document.getElementById('parameters').value.split(';');
+        if (document.getElementById('parametersQuery').value.length > 0) {
+            var list = document.getElementById('parametersQuery').value.split(';');
             if (list != null) {
                 var i = 0;
                 for (i = 0; i < list.length; i++) {
@@ -170,9 +170,9 @@
 
 <div id="queryParameters"></div>
 
-<form action="ControllerServlet" method="POST" enctype="multipart/form-data">
+<form action="ControllerServlet" method="POST">
     <input type="hidden" name="command" value="executeQuery" />
-    <input type="text" name="parameters" id="parameters" value="" />
+    <input type="text" name="parametersQuery" id="parametersQuery" value="" />
     <input type="submit" value="Execute" />
 </form>
 
@@ -195,11 +195,11 @@
 <br />
 <a href="ControllerServlet?command=loadConfiguration">Load configuration</a>
 
-<%@ include file="footer.jsp" %>
-
-<script>
-    <% if (request.getAttribute("parameters") != null) { %>
-        document.getElementById('parameters').value = '<%= request.getAttribute("parameters").toString() %>';
+<script language="JavaScript" type="text/javascript">
+    <% if (request.getAttribute("parametersQuery") != null) { %>
+        document.getElementById('parametersQuery').value = '<%= request.getAttribute("parametersQuery").toString() %>';
         updateItems();
     <% } %>
 </script>
+
+<%@ include file="footer.jsp" %>
