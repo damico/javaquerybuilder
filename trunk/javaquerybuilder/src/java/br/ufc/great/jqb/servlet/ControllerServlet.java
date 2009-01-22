@@ -5,14 +5,13 @@
 package br.ufc.great.jqb.servlet;
 
 import br.ufc.great.jqb.command.Command;
+import br.ufc.great.jqb.command.ExecuteConfigurationFileCommand;
 import br.ufc.great.jqb.command.LoadConfigurationFileCommand;
 import br.ufc.great.jqb.command.MountQueryCommand;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -35,6 +34,7 @@ public class ControllerServlet extends GenericServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         commands = new Hashtable<String, Command>();
         commands.put("loadConfiguration", new LoadConfigurationFileCommand());
+        commands.put("executeConfiguration", new ExecuteConfigurationFileCommand());
         commands.put("mountQuery", new MountQueryCommand());
     }
 

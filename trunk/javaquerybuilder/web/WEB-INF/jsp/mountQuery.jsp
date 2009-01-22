@@ -25,13 +25,34 @@
 <form action="ControllerServlet" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="command" value="loadConfiguration" />
     <select name="fieldRef">
+        <option value="">Select</option>
         <% for (int i = 0; (jqb.getPayload() != null) && (jqb.getPayload().getFields() != null) && i < jqb.getPayload().getFields().size(); i++) { %>
         <option value="<%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn() %>"><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn() %></option>        
         <% } %>
     </select>
-    <input type="submit" value="Load" />
+    <select name="compType">
+        <option value="">Select</option>
+        <option value="<%= Configuration.COMPARATOR_CONTAINS %>">Contains</option>
+        <option value="<%= Configuration.COMPARATOR_EQ %>">Equals</option>
+        <option value="<%= Configuration.COMPARATOR_GT %>">Greater than</option>
+        <option value="<%= Configuration.COMPARATOR_GT_OR_EQ %>">Greater than or equal</option>
+        <option value="<%= Configuration.COMPARATOR_LT %>">Less than</option>
+        <option value="<%= Configuration.COMPARATOR_LT_OR_EQ %>">Less than or equal</option>
+        <option value="<%= Configuration.COMPARATOR_NOT_EQ %>">Not equal</option>
+    </select>
+    <input type="text" name="compValue" />
+    <select name="compType">
+        <option value="">Select</option>
+        <option value="<%= Configuration.LOGICAL_AND %>">And</option>
+        <option value="<%= Configuration.LOGICAL_OR %>">Or</option>
+    </select>    
+    <input type="submit" value="Execute" />
 </form>
 
 <% } %>
+
+<br />
+<a href="ControllerServlet?command=loadConfiguration">Load configuration</a>
+
 
 <%@ include file="footer.jsp" %>

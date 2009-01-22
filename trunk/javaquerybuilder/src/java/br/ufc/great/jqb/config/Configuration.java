@@ -9,6 +9,18 @@ import java.io.InputStream;
  * 
  */
 public class Configuration {
+    
+    public static final int COMPARATOR_CONTAINS = 1;
+    public static final int COMPARATOR_EQ = 2;
+    public static final int COMPARATOR_GT = 3;
+    public static final int COMPARATOR_LT = 4;
+    public static final int COMPARATOR_GT_OR_EQ = 5;
+    public static final int COMPARATOR_LT_OR_EQ = 6;
+    public static final int COMPARATOR_NOT_EQ = 7;
+    
+    public static final int LOGICAL_OR = 8;
+    public static final int LOGICAL_AND = 9;
+
 
     public static JavaQueryBuilder getConfiguration(InputStream inputStream) {
         XStream xStream = createXStreamObject();

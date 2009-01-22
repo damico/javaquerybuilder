@@ -20,7 +20,7 @@ public class MountQueryCommand implements Command {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("configurationFile") != null) {
+        if (session.getAttribute("configurationFile") != null && session.getAttribute("configurationFile") instanceof JavaQueryBuilder) {
             return "WEB-INF/jsp/mountQuery.jsp";
         }
         return null;

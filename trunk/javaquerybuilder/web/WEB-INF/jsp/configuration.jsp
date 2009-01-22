@@ -21,7 +21,7 @@
 <h2>Parameters</h2>
 
 <form action="ControllerServlet" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="command" value="processMountQuery" />
+    <input type="hidden" name="command" value="executeConfiguration" />
     <input type="file" name="upload" />
     <input type="submit" value="Load" />
 </form>
@@ -40,7 +40,8 @@ relationship: <b><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getRelatio
 representation: <b><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getRepresentation() %></b><br />
 type: <b><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getType() %></b><br />
 <% } %>
-
+<br />
+<a href="ControllerServlet?command=mountQuery">Mount query</a>
 <% } %>
         
 <%@ include file="footer.jsp" %>
