@@ -6,6 +6,7 @@ package br.ufc.great.jqb.servlet;
 
 import br.ufc.great.jqb.command.Command;
 import br.ufc.great.jqb.command.ExecuteConfigurationFileCommand;
+import br.ufc.great.jqb.command.ExecuteQueryCommand;
 import br.ufc.great.jqb.command.LoadConfigurationFileCommand;
 import br.ufc.great.jqb.command.MountQueryCommand;
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class ControllerServlet extends GenericServlet {
         commands.put("loadConfiguration", new LoadConfigurationFileCommand());
         commands.put("executeConfiguration", new ExecuteConfigurationFileCommand());
         commands.put("mountQuery", new MountQueryCommand());
+        commands.put("executeQuery", new ExecuteQueryCommand());
     }
 
     private String getCommandName(HttpServletRequest request) {

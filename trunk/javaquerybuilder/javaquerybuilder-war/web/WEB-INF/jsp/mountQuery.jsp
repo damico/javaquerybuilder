@@ -11,6 +11,7 @@
 <%@ page import="br.ufc.great.jqb.config.Configuration" %>
 <%@ page import="br.ufc.great.jqb.config.JavaQueryBuilder" %>
 <%@ page import="br.ufc.great.jqb.config.Fieldref" %>
+<%@ page import="java.sql.ResultSet" %>
 
 <%@ include file="header.jsp" %>
 
@@ -177,8 +178,28 @@
 
 <% } %>
 
+<% ResultSet resultSet = (ResultSet) request.getAttribute("resultSet");  %>
+<% if (resultSet != null) { %>
+<table>
+    <tr>
+        <td>Name</td>
+    </tr>
+    <% while (resultSet.next()) { %>
+    <tr>
+        <td><%= resultSet.getString("name") %></td>
+    </tr>    
+    <% } %>
+</table>
+<% } %>
+
 <br />
 <a href="ControllerServlet?command=loadConfiguration">Load configuration</a>
 
-
 <%@ include file="footer.jsp" %>
+
+<script>
+    <% if (request.getAttribute("parameters") != null) { %>
+        document.getElementById('parameters').value = '<%= request.getAttribute("parameters").toString() %>';
+        updateItems();
+    <% } %>
+</script>
