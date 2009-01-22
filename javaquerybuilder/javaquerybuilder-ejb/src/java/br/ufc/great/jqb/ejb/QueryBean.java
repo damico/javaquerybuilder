@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
  * @author leoomoreira
  */
 @Stateless
-public class QueryBean implements QueryRemote, QueryLocal {
+public class QueryBean implements QueryRemote {
 
     public void execute() {
         

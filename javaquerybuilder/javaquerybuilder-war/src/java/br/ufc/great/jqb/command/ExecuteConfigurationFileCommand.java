@@ -2,6 +2,8 @@ package br.ufc.great.jqb.command;
 
 import br.ufc.great.jqb.config.Configuration;
 import br.ufc.great.jqb.config.JavaQueryBuilder;
+import br.ufc.great.jqb.ejb.ConfigurationBean;
+import br.ufc.great.jqb.ejb.ConfigurationRemote;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,7 +33,6 @@ public class ExecuteConfigurationFileCommand implements Command {
                     FileItem item = (FileItem) iter.next();
                     if (! item.isFormField()) {
                         String contentType = item.getContentType();
-                        System.out.println(contentType);
                         if (contentType.equalsIgnoreCase("text/xml")) {
                             String xml = "";
                             BufferedReader br = new BufferedReader(new InputStreamReader(item.getInputStream()));
@@ -41,8 +42,9 @@ public class ExecuteConfigurationFileCommand implements Command {
                                 temp = br.readLine();
                             }
                             br.close();
-                            JavaQueryBuilder jqb = Configuration.getConfiguration(xml);
                             HttpSession session = request.getSession();
+                            ConfigurationRemote configurationRemote = new ConfigurationBean();
+                            JavaQueryBuilder jqb = configurationRemote.createConfiguration(xml);
                             session.setAttribute("configurationFile", jqb);
                             return "WEB-INF/jsp/configuration.jsp";
                         }
