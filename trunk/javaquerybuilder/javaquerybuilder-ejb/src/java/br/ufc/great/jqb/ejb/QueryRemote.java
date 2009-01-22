@@ -5,6 +5,7 @@
 
 package br.ufc.great.jqb.ejb;
 
+import java.sql.ResultSet;
 import javax.ejb.Remote;
 
 /**
@@ -14,6 +15,6 @@ import javax.ejb.Remote;
 @Remote
 public interface QueryRemote {
 
-    public void execute();
+    public ResultSet execute(String query);
     
 }
