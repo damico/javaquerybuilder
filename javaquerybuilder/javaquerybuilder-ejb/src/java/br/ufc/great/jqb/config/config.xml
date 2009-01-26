@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <javaquerybuilder>
-    <header doctype="config" source="jndi/portal" mainview="person" />
+    <header doctype="config" source="jdbc/portal" mainview="person" />
     <payload>
         <fields>
-            <fieldref column="id" relationship="null" representation="person.id" type="string" />
-            <fieldref column="name" relationship="rel_report.courseid" representation="person.name" type="string" />
+            <fieldref column="id" relationship="null" representation="person_id" type="string" />
+            <fieldref column="name" relationship="rel_report.courseid" representation="person_name" type="string" />
         </fields>
     </payload>
 </javaquerybuilder>

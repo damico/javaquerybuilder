@@ -27,6 +27,7 @@ public class QueryBean implements QueryRemote {
         try {
             if (! connection.isClosed()) {
                 Statement statement = connection.createStatement();
+                System.out.println("query: [" + query + "]");
                 resultSet = statement.executeQuery(query);
             }
         } 

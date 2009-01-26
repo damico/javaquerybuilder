@@ -172,7 +172,7 @@
 
 <form action="ControllerServlet" method="POST">
     <input type="hidden" name="command" value="executeQuery" />
-    <input type="hidden" name="parametersQuery" id="parametersQuery" value="" />
+    <input type="text" name="parametersQuery" id="parametersQuery" value="" size="100" />
     <input type="submit" value="Execute" />
 </form>
 
@@ -182,11 +182,17 @@
 <% if (resultSet != null) { %>
 <table>
     <tr>
-        <td>Name</td>
+        <% int colCount = resultSet.getMetaData().getColumnCount(); %>
+        <% for (int j = 1; j <= colCount; j++) { %>
+        <td><%= resultSet.getMetaData().getColumnName(j) %></td>
+        <% } %>
     </tr>
+    
     <% while (resultSet.next()) { %>
     <tr>
-        <td><%= resultSet.getString("name") %></td>
+        <% for (int j = 1; j <= colCount; j++) { %>
+        <td><%= resultSet.getString(j) %></td>
+        <% } %>
     </tr>    
     <% } %>
 </table>
