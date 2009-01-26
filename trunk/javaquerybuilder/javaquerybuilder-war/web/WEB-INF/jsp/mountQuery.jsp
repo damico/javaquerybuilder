@@ -172,7 +172,7 @@
 
 <form action="ControllerServlet" method="POST">
     <input type="hidden" name="command" value="executeQuery" />
-    <input type="text" name="parametersQuery" id="parametersQuery" value="" />
+    <input type="hidden" name="parametersQuery" id="parametersQuery" value="" />
     <input type="submit" value="Execute" />
 </form>
 
