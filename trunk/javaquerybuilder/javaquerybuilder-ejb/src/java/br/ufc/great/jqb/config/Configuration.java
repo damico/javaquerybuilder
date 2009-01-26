@@ -20,8 +20,7 @@ public class Configuration {
     
     public static final int LOGICAL_OR = 8;
     public static final int LOGICAL_AND = 9;
-
-
+  
     public static JavaQueryBuilder getConfiguration(InputStream inputStream) {
         XStream xStream = createXStreamObject();
         JavaQueryBuilder jqb = (JavaQueryBuilder) xStream.fromXML(inputStream);
