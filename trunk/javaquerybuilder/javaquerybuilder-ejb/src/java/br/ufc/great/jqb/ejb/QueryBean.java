@@ -21,8 +21,8 @@ import javax.ejb.Stateless;
 @Stateless
 public class QueryBean implements QueryRemote {
 
-    public ResultSet execute(String query) {
-        Connection connection = Utils.getConnection();
+    public ResultSet execute(String query, String jndi) {
+        Connection connection = Utils.getConnection(jndi);
         ResultSet resultSet = null;
         try {
             if (! connection.isClosed()) {

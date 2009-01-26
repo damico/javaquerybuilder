@@ -28,11 +28,11 @@ public final class Utils {
         return ejb;
     }
     
-    public static Connection getConnection() {
+    public static Connection getConnection(String jndi) {
         Connection connection = null;
         try {
             InitialContext initialContext = new InitialContext();
-            DataSource dataSource = (DataSource) initialContext.lookup("jdbc/portal");
+            DataSource dataSource = (DataSource) initialContext.lookup(jndi);
             connection = dataSource.getConnection();
         } 
         catch (SQLException ex) {
