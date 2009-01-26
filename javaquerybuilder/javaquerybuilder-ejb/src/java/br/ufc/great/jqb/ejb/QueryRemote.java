@@ -15,6 +15,6 @@ import javax.ejb.Remote;
 @Remote
 public interface QueryRemote {
 
-    public ResultSet execute(String query);
+    public ResultSet execute(String query, String jndi);
     
 }
