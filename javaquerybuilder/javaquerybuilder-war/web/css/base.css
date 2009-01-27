@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {margin:0; padding:0;}
+.clear {clear:both; height:0; font-size: 1px; line-height: 0px;}
+
+
+html body {font:100% Arial, Helvetica, sans-serif;}
+
+#header, #container{width:780px; height:auto; text-align:left; margin:0 auto;}
+#container {min-height:100%;}
+#container #content {height: auto; background:#fff; border:1px solid #daeaf7; padding: 9px; border-top-width: 0;}

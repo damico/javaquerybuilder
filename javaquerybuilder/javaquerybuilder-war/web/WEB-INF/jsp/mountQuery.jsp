@@ -6,8 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-   
+"http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ page import="br.ufc.great.jqb.config.Configuration" %>
 <%@ page import="br.ufc.great.jqb.config.JavaQueryBuilder" %>
 <%@ page import="br.ufc.great.jqb.config.Fieldref" %>
@@ -84,7 +84,7 @@
     function updateItems() {
         var html = '';
         html += '<table>';
-        html += '<tr>';
+        html += '<tr class="table-header">';
         html += '<td>Field name</td>';
         html += '<td>Comparator</td>';
         html += '<td>Value</td>';
@@ -100,12 +100,12 @@
                     var compType = list[i].split('@')[1];
                     var compValue = list[i].split('@')[2];
                     var logicValue = list[i].split('@')[3];
-                    html +='<tr>';
+                    html +='<tr' + ((i % 2 == 0) ? ' class="row-admin"' : '') + '>';
                     html +='<td>' + getSelectDescription(document.getElementById('fieldRef'), fieldRef) + '</td>';
                     html +='<td>' + getSelectDescription(document.getElementById('compType'), compType) + '</td>';
                     html +='<td>' + compValue + '</td>';
                     html +='<td>' + getSelectDescription(document.getElementById('logicValue'), logicValue) + '</td>';
-                    html +='<td><a href="javascript:' + 'removeItem(' + i + ');' + '">Remove</a></td>';
+                    html +='<td class="manage-column"><img class="img-button" src="images/icon-remove.gif" alt="Remove record" title="Remove record" onclick="removeItem(' + i + ');" /></td>';
                     html += '</tr>';                
                 }
             }
@@ -119,93 +119,88 @@
     
 </script>
 
-<% JavaQueryBuilder jqb = (JavaQueryBuilder) session.getAttribute("configurationFile"); %>
+<% JavaQueryBuilder jqb = (JavaQueryBuilder) session.getAttribute("configurationFile");%>
 
-<h1>Mount Query</h1>
+<% if (jqb != null) {%>
 
-<h2>Parameters</h2>
-
-<% if (jqb != null) { %>
-
-<table>
-    <tr>
-        <td>Field name</td>
-        <td>Comparator</td>
-        <td>Value</td>
-        <td>Logical connector</td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>
-            <select name="fieldRef" id="fieldRef">
-                <option value="">Select</option>
-                <% for (int i = 0; (jqb.getPayload() != null) && (jqb.getPayload().getFields() != null) && i < jqb.getPayload().getFields().size(); i++) { %>
-                <option value="<%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn() %>"><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn() %></option>        
-                <% } %>
-            </select>            
-        </td>
-        <td>
-            <select name="compType" id="compType">
-                <option value="">Select</option>
-                <option value="<%= Configuration.COMPARATOR_CONTAINS %>">Contains</option>
-                <option value="<%= Configuration.COMPARATOR_EQ %>">Equals</option>
-                <option value="<%= Configuration.COMPARATOR_GT %>">Greater than</option>
-                <option value="<%= Configuration.COMPARATOR_GT_OR_EQ %>">Greater than or equal</option>
-                <option value="<%= Configuration.COMPARATOR_LT %>">Less than</option>
-                <option value="<%= Configuration.COMPARATOR_LT_OR_EQ %>">Less than or equal</option>
-                <option value="<%= Configuration.COMPARATOR_NOT_EQ %>">Not equal</option>
-            </select>            
-        </td>
-        <td><input type="text" name="compValue" id="compValue"/></td>
-        <td>
-            <select name="logicValue" id="logicValue">
-                <option value="">Select</option>
-                <option value="<%= Configuration.LOGICAL_AND %>">And</option>
-                <option value="<%= Configuration.LOGICAL_OR %>">Or</option>
-            </select>                
-        </td>
-        <td><input type="button" value="Add" onclick="addItem(document.getElementById('fieldRef').value, document.getElementById('compType').value, document.getElementById('compValue').value, document.getElementById('logicValue').value);"/></td>
-    </tr>    
-</table>
-
-<div id="queryParameters"></div>
-
-<form action="ControllerServlet" method="POST">
-    <input type="hidden" name="command" value="executeQuery" />
-    <input type="text" name="parametersQuery" id="parametersQuery" value="" size="100" />
-    <input type="submit" value="Execute" />
-</form>
-
-<% } %>
-
-<% ResultSet resultSet = (ResultSet) request.getAttribute("resultSet");  %>
-<% if (resultSet != null) { %>
-<table>
-    <tr>
-        <% int colCount = resultSet.getMetaData().getColumnCount(); %>
-        <% for (int j = 1; j <= colCount; j++) { %>
-        <td><%= resultSet.getMetaData().getColumnName(j) %></td>
-        <% } %>
-    </tr>
+<div id="content">
+    <h1><span id="formTitle">Mount Query</span></h1>
+    <label for="fieldRef">Field name:</label>
+    <select name="fieldRef" id="fieldRef">
+        <option value="">Select</option>
+        <% for (int i = 0; (jqb.getPayload() != null) && (jqb.getPayload().getFields() != null) && i < jqb.getPayload().getFields().size(); i++) {%>
+        <option value="<%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn()%>"><%= ((Fieldref) jqb.getPayload().getFields().get(i)).getColumn()%></option>        
+        <% }%>
+    </select>            
+    <br />
+    <label for="compType">Comparator:</label>
+    <select name="compType" id="compType">
+        <option value="">Select</option>
+        <option value="<%= Configuration.COMPARATOR_CONTAINS%>">Contains</option>
+        <option value="<%= Configuration.COMPARATOR_EQ%>">Equals</option>
+        <option value="<%= Configuration.COMPARATOR_GT%>">Greater than</option>
+        <option value="<%= Configuration.COMPARATOR_GT_OR_EQ%>">Greater than or equal</option>
+        <option value="<%= Configuration.COMPARATOR_LT%>">Less than</option>
+        <option value="<%= Configuration.COMPARATOR_LT_OR_EQ%>">Less than or equal</option>
+        <option value="<%= Configuration.COMPARATOR_NOT_EQ%>">Not equal</option>
+    </select>            
+    <br />
+    <label for="compValue">Value:</label>
+    <input type="text" name="compValue" id="compValue"/>
+    <br />
+    <label for="logicValue">Logical connector:</label>
+    <select name="logicValue" id="logicValue">
+        <option value="">Select</option>
+        <option value="<%= Configuration.LOGICAL_AND%>">And</option>
+        <option value="<%= Configuration.LOGICAL_OR%>">Or</option>
+    </select>                
+    <br />
+    <input type="button" value="Add" onclick="addItem(document.getElementById('fieldRef').value, document.getElementById('compType').value, document.getElementById('compValue').value, document.getElementById('logicValue').value);"/>
+    <br />
+    <div id="queryParameters"></div>
+    <br />
+    <form action="ControllerServlet" method="POST">
+        <input type="hidden" name="command" value="executeQuery" />
+        <input type="hidden" name="parametersQuery" id="parametersQuery" value="" size="100" />
+        <input type="submit" value="Execute" />
+    </form>
+    <br />
+    <div id="divList">
+    <div id="divResultList">
+        <% ResultSet resultSet = (ResultSet) request.getAttribute("resultSet");%>
+        <% if (resultSet != null) {%>
+        <table>
+            <tr class="table-header">
+                <% int colCount = resultSet.getMetaData().getColumnCount();%>
+                <% for (int j = 1; j <= colCount; j++) {%>
+                <td><%= resultSet.getMetaData().getColumnName(j)%></td>
+                <% }%>
+            </tr>
+            <% int k = 0;%>
+            <% while (resultSet.next()) {%>
+            <tr<%= ((k % 2 == 0) ? " class=\"row-admin\"" : "")%>>
+                <% for (int j = 1; j <= colCount; j++) {%>
+                <td><%= resultSet.getString(j)%></td>
+            <% }%>
+            <% k++;%>
+            </tr>    
+            <% }%>
+        </table>
+        <% }%>    
+    </div>  
+    </div>
     
-    <% while (resultSet.next()) { %>
-    <tr>
-        <% for (int j = 1; j <= colCount; j++) { %>
-        <td><%= resultSet.getString(j) %></td>
-        <% } %>
-    </tr>    
-    <% } %>
-</table>
-<% } %>
+    <% }%>
+    <br />  
+    <input type="button" value="Load configuration" onclick="document.location = 'ControllerServlet?command=loadConfiguration';"/>    
+</div>
 
-<br />
-<a href="ControllerServlet?command=loadConfiguration">Load configuration</a>
 
 <script language="JavaScript" type="text/javascript">
-    <% if (request.getAttribute("parametersQuery") != null) { %>
-        document.getElementById('parametersQuery').value = '<%= request.getAttribute("parametersQuery").toString() %>';
+    <% if (request.getAttribute("parametersQuery") != null) {%>
+        document.getElementById('parametersQuery').value = '<%= request.getAttribute("parametersQuery").toString()%>';
         updateItems();
-    <% } %>
+    <% }%>
 </script>
 
 <%@ include file="footer.jsp" %>
