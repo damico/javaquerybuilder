@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* change the menu for the admin environment */
+
+h1 { font-size: 18px; color:#3399ff; margin-bottom: 10px; }
+
+#search-form { border:solid #3399ff; border-width:0px 0px 2px 0px; margin:0px; padding: 0px; }
+
+#divResultList table, #queryParameters table { border-collapse: collapse; width: 100%; }
+#divResultList th, td, #queryParameters th, td { padding: 3px; }
+#divResultList .manage-column, #queryParameters .manage-column { width: 25px; }
+#divResultList a, #queryParameters a, #divResultList a:visited, #queryParameters a:visited, #divResultList a:active, #queryParameters a:active, #divResultList a:hover, #queryParameters a:hover { color:#3399ff; text-decoration: none; }
+#divResultList a:hover, #queryParameters a:hover { text-decoration: underline; }
+
+td, input, label { font-size: 11px; }
+.table-header td { font-size: 11px; font-weight: bold; }
+.row-admin { background: #eee; }
+
+.row-pagination span, #divForm span { font-size: 11px; margin: 0px 5px 0px 5px; }
+.row-pagination { padding-top: 10px; border:solid #ddd; border-width: 1px 0px 0px 0px; text-align: right; }
+.img-button { cursor: pointer; }
+.admin-button {  }
+
+/* css to align the forms */
+label, input, textarea, select { display: block; float: left; margin-bottom: 10px; }
+label {	color: #3399ff; font-weight: bold; text-align: right; width: 110px;	padding-right: 20px; }
+br { clear: left; }
+.label-boxfield { color: #000; padding-right: 5px; margin-right: 0px 4px 0px 4px; width: auto; font-weight: normal;}
+
+#login label { color: #ff9900; }
