@@ -44,6 +44,7 @@ The ProcessMountQuery servlet will create a table where the first cell of each l
 ||            || <                ||                  ||                ||
 ||            || >=               ||                  ||                ||
 ||            || =<               ||                  ||                ||
+||            || include          ||                  ||                ||
 
 For each field selected into previous servlet, one line will be created with the content presented into table above. Will be only one difference into last field that will be the last line of table: For this field there will be no *Logic Operator Combo*
 
