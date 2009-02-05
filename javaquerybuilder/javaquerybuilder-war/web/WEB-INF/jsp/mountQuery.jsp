@@ -167,7 +167,7 @@
     <br />
     <% String sql = (String) request.getAttribute("sql"); %>
     <% if (sql != null) { %>
-    <div class="box-query"\>
+    <div class="box-query">
         <%= sql %>
     </div>
     <% } %>
