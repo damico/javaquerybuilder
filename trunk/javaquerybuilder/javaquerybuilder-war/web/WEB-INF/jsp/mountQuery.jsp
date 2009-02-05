@@ -169,6 +169,7 @@
     <% if (sql != null) { %>
     <div class="box-query">
         <h2>Query</h2>
+        <br />
         <%= sql %>
     </div>
     <% } %>
