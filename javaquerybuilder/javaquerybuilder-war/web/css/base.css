@@ -12,3 +12,4 @@ html body {font:100% Arial, Helvetica, sans-serif;}
 #container #content {height: auto; background:#fff; border:1px solid #daeaf7; padding: 9px; border-top-width: 0;}
 
 .box-query {font-size: 12px; font-family: Arial, Helvetica, sans-serif; background:#fff6e5; padding:9px; border:#facf4d solid; border-width:1px; margin-bottom: 10px;}
+.box-query h2 {color:#ffa200; font-size:16px; }
