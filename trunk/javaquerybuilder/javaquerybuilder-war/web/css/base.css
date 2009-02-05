@@ -11,8 +11,8 @@ html body {font:100% Arial, Helvetica, sans-serif;}
 #container {min-height:100%;}
 #container #content {height: auto; background:#fff; border:1px solid #daeaf7; padding: 9px; border-top-width: 0;}
 
-.box-query {font-size: 12px; font-family: Arial, Helvetica, sans-serif; background:#fff6e5; padding:9px; border:#facf4d solid; border-width:1px; margin-bottom: 10px;}
-.box-query h2 {color:#ffa200; font-size:16px; }
+.box-query {font-size: 12px; font-family: Arial, Helvetica, sans-serif; background:#f0f9ff; padding:10px; border:#cfe3f3 solid; border-width:1px;}
+.box-query h2 {color:#19628e; font-size:16px; }
 
-.box-param {font-size: 12px; font-family: Arial, Helvetica, sans-serif; background:#fff6e5; padding:9px; border:#facf4d solid; border-width:1px; margin-bottom: 10px;}
-.box-param h2 {color:#ffa200; font-size:16px; }
+.box-param {font-size: 12px; font-family: Arial, Helvetica, sans-serif; background:#f0f9ff; padding:10px; border:#cfe3f3 solid; border-width:1px;}
+.box-param h2 {color:#19628e; font-size:16px; }
