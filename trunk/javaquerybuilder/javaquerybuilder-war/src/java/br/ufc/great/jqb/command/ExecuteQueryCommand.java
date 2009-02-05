@@ -97,8 +97,10 @@ public class ExecuteQueryCommand implements Command {
         }
         sql = "select " + strFields + " " + sql + strWhere;
         ResultSet resultSet = queryRemote.execute(sql, jqb.getHeader().getSource());
-        if (resultSet != null)
+        if (resultSet != null) {
+            request.setAttribute("sql", sql);
             request.setAttribute("resultSet", resultSet);
+        }
         return "WEB-INF/jsp/mountQuery.jsp";
     }
 

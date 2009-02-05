@@ -165,6 +165,13 @@
         <input type="submit" value="Execute" />
     </form>
     <br />
+    <% String sql = (String) request.getAttribute("sql"); %>
+    <% if (sql != null) { %>
+    <div class="box-query"\>
+        <%= sql %>
+    </div>
+    <% } %>
+    <br />
     <div id="divList">
     <div id="divResultList">
         <% ResultSet resultSet = (ResultSet) request.getAttribute("resultSet");%>
