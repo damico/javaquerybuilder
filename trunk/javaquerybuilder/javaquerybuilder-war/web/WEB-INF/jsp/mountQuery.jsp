@@ -112,7 +112,7 @@
             html += '</table>';
         }
         else {
-            html = '';
+            html = '<div class="box-param"><h2>No parameter was specified for query</h2></div>';
         }
         document.getElementById('queryParameters').innerHTML = html;
     }
@@ -158,9 +158,7 @@
     <input type="button" value="Add" onclick="addItem(document.getElementById('fieldRef').value, document.getElementById('compType').value, document.getElementById('compValue').value, document.getElementById('logicValue').value);"/>
     <br />
     <div id="queryParameters">
-        <div class="box-query">
-            <h2>No parameter was specified for query</h2>
-        </div>
+        <div class="box-param"><h2>No parameter was specified for query</h2></div>
     </div>
     <br />
     <form action="ControllerServlet" method="POST">
