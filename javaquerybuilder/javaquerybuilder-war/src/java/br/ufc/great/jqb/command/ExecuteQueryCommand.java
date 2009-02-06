@@ -99,11 +99,13 @@ public class ExecuteQueryCommand implements Command {
                     }                
                 }
             }
-            //if (strWhere.endsWith("or "));
-            //    strWhere = strWhere.substring(0, strWhere.length() - 4);
-            //if (strWhere.endsWith("and "));
-            //    strWhere = strWhere.substring(0, strWhere.length() - 5);
         }
+        while (strWhere.endsWith(" or "))
+            strWhere = strWhere.substring(0, strWhere.length() - " or ".length());
+        while (strWhere.endsWith(" and "))
+            strWhere = strWhere.substring(0, strWhere.length() - " and ".length());        
+        if (strFields.trim().length() == 0)
+            strFields = "*";
         sql = "select " + strFields + " " + sql + strWhere;
         ResultSet resultSet = queryRemote.execute(sql, jqb.getHeader().getSource());
         if (resultSet != null) {
