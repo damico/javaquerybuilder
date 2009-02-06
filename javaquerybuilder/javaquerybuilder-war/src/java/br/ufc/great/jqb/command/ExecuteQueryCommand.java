@@ -11,6 +11,7 @@ import br.ufc.great.jqb.config.JavaQueryBuilder;
 import br.ufc.great.jqb.ejb.QueryBean;
 import br.ufc.great.jqb.ejb.QueryRemote;
 import java.sql.ResultSet;
+import java.util.Hashtable;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,14 +33,19 @@ public class ExecuteQueryCommand implements Command {
         QueryRemote queryRemote = new QueryBean();
         String sql = "from " + jqb.getHeader().getMainview();
         List fields = jqb.getPayload().getFields();
+        
         String strFields = "";
         String strWhere = "";
+        
+        Hashtable<String, String> fieldsHash = new Hashtable<String, String>();
         for (int i = 0; i < fields.size(); i++) {
             Fieldref f = (Fieldref) fields.get(i);
-            strFields += f.getColumn() + " as " + f.getRepresentation();
-            if (i != fields.size() - 1)
-                strFields += ", ";
+            fieldsHash.put(f.getColumn(), f.getRepresentation());
+            //strFields += f.getColumn() + " as " + f.getRepresentation();
+            //if (i != fields.size() - 1)
+            //    strFields += ", ";
         }
+        
         if (parametersQuery.trim().length() > 0) {
             strWhere = " where ";
             String[] parameters = parametersQuery.split(";");
@@ -47,6 +53,9 @@ public class ExecuteQueryCommand implements Command {
                 parameters = new String[] { parametersQuery };
             for (int i = 0; i < parameters.length; i++) {
                 String[] reg = parameters[i].split("@");
+                strFields += reg[0] + " as " + fieldsHash.get(reg[0]);
+                if (i != parameters.length - 1)
+                    strFields += ", ";                
                 switch (Integer.parseInt(reg[1])) {
                     case Configuration.COMPARATOR_CONTAINS : {
                         strWhere += reg[0] + " LIKE '%" + reg[2] + "%'";

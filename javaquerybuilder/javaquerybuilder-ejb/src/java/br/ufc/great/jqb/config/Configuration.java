@@ -17,6 +17,7 @@ public class Configuration {
     public static final int COMPARATOR_GT_OR_EQ = 5;
     public static final int COMPARATOR_LT_OR_EQ = 6;
     public static final int COMPARATOR_NOT_EQ = 7;
+    public static final int COMPARATOR_INCLUDE = 10;
     
     public static final int LOGICAL_OR = 8;
     public static final int LOGICAL_AND = 9;

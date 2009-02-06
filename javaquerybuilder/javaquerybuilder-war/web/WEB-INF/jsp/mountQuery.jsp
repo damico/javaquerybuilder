@@ -143,6 +143,7 @@
         <option value="<%= Configuration.COMPARATOR_LT%>">Less than</option>
         <option value="<%= Configuration.COMPARATOR_LT_OR_EQ%>">Less than or equal</option>
         <option value="<%= Configuration.COMPARATOR_NOT_EQ%>">Not equal</option>
+        <option value="<%= Configuration.COMPARATOR_INCLUDE%>">Include</option>
     </select>            
     <br />
     <label for="compValue">Value:</label>
@@ -150,7 +151,6 @@
     <br />
     <label for="logicValue">Logical connector:</label>
     <select name="logicValue" id="logicValue">
-        <option value="">Select</option>
         <option value="<%= Configuration.LOGICAL_AND%>">And</option>
         <option value="<%= Configuration.LOGICAL_OR%>">Or</option>
     </select>                
