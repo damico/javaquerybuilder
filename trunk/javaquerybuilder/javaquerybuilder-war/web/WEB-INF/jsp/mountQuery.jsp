@@ -17,6 +17,17 @@
 
 <script language="JavaScript" type="text/javascript">
     
+    function treatComparator(comparator) {
+        if (comparator.value == '<%= Configuration.COMPARATOR_INCLUDE %>') {
+            document.getElementById('compValue').value = 'none';
+            document.getElementById('compValue').disabled = true;
+        }
+        else {
+            document.getElementById('compValue').value = '';
+            document.getElementById('compValue').disabled = false;
+        }
+    }
+    
     function getSelectDescription(obj, value) {
         for (var i = 0; i < obj.options.length; i++) {
             var opt = obj.options[i];
@@ -134,7 +145,7 @@
     </select>            
     <br />
     <label for="compType">Comparator:</label>
-    <select name="compType" id="compType">
+    <select name="compType" id="compType" onchange="treatComparator(this);">
         <option value="">Select</option>
         <option value="<%= Configuration.COMPARATOR_CONTAINS%>">Contains</option>
         <option value="<%= Configuration.COMPARATOR_EQ%>">Equals</option>
